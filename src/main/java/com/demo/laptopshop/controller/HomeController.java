@@ -20,13 +20,13 @@ public class HomeController {
     @Autowired
     HttpServletRequest request;
 
-    public static List<String> list = Arrays.asList(new String[]{"categories", "category-product", "coupon", "menus", "news", "note", "options", "orderview", "product-images", "products", "slides", "submit-contact", "users"});
+    public static List<String> list = Arrays.asList("categories", "category-product", "coupon", "menus", "news", "note"
+            , "options", "orderview", "product-images", "products", "slides", "submit-contact", "users");
 
     @GetMapping("/")
     public String Home(Model model) {
         model.addAttribute("links", list);
         model.addAttribute("url", request.getRequestURL().toString());
-
         return "home";
     }
 }
