@@ -26,6 +26,7 @@ public class HomeController {
     public String Home(Model model) {
         model.addAttribute("links", list);
         model.addAttribute("url", request.getRequestURL().toString());
+
         return "home";
     }
 }

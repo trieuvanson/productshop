@@ -9,7 +9,7 @@
     <tbody>
     <c:forEach items="${links}" var="link">
         <tr>
-            <td><a href="${url}/${link}/">${link}-api</a> </td>
+            <td><a href="${url}${link}/">${link}-api</a> </td>
         </tr>
     </c:forEach>
     </tbody>
