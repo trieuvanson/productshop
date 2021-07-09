@@ -2,8 +2,8 @@ package com.demo.laptopshop.controller;
 
 
 import com.demo.laptopshop.exception.ResourceNotFoundException;
-import com.demo.laptopshop.model.Category;
-import com.demo.laptopshop.repo.CategoryRepo;
+import com.demo.laptopshop.model.Categories;
+import com.demo.laptopshop.repo.CategoriesRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,42 +14,46 @@ import java.util.Map;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/categories")
+@RequestMapping("/categories")
 public class CategoryController {
     @Autowired
-    CategoryRepo categoryRepo;
+    CategoriesRepo categoriesRepo;
 
     @GetMapping("/")
-    private List<Category> getCategorys()  {
-        return categoryRepo.findAll();
+    private List<Categories> getCategorys()  {
+        return categoriesRepo.findAll();
     }
     
     @GetMapping("/{id}")
-    public ResponseEntity<Category> getCategory(@PathVariable Long id)    {
-        Category Category = categoryRepo.findById(id).orElseThrow(() ->
+    public ResponseEntity<Categories> getCategory(@PathVariable Long id)    {
+        Categories Category = categoriesRepo.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("Category not exist " + id));
         return ResponseEntity.ok(Category);
     }
 
     @PostMapping("/")
-    public Category PostCategory(@RequestBody Category Category) {
-        return categoryRepo.save(Category);
+    public Categories PostCategory(@RequestBody Categories Category) {
+        return categoriesRepo.save(Category);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Category> PutCategory(@RequestBody Category Category, @PathVariable Long id)  {
-        Category newCategory = categoryRepo.findById(id).orElseThrow(
+    public ResponseEntity<Categories> PutCategory(@RequestBody Categories Category, @PathVariable Long id)  {
+        Categories newCategory = categoriesRepo.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Category not exist " + id));
+        newCategory.setBanner(Category.getBanner());
         newCategory.setName(Category.getName());
-        Category updateCategory = categoryRepo.save(newCategory);
+        newCategory.setParent_id(Category.getParent_id());
+        newCategory.setSlug(newCategory.getSlug());
+        newCategory.setUpdate_at(Category.getUpdate_at());
+        Categories updateCategory = categoriesRepo.save(newCategory);
         return ResponseEntity.ok(updateCategory);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Map<String, Boolean>> deleteCategory(@PathVariable Long id)    {
-        Category Category = categoryRepo.findById(id).orElseThrow(
+        Categories Category = categoriesRepo.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Category not exist " + id));
-        categoryRepo.delete(Category);
+        categoriesRepo.delete(Category);
         Map<String, Boolean> reponse = new HashMap<>();
         reponse.put("deleted", Boolean.TRUE);
         return ResponseEntity.ok(reponse);
