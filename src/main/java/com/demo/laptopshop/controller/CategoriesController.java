@@ -15,12 +15,12 @@ import java.util.Map;
 @CrossOrigin
 @RestController
 @RequestMapping("/categories")
-public class CategoryController {
+public class CategoriesController {
     @Autowired
     CategoriesRepo categoriesRepo;
 
     @GetMapping("/")
-    private List<Categories> getCategorys()  {
+    private List<Categories> getCategories()  {
         return categoriesRepo.findAll();
     }
     

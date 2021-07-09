@@ -20,9 +20,9 @@ public class Options {
     private Long id;
 
     @Column(name = "otp_key")
-    private String name;
+    private String otp_key;
 
     @Column(name = "otp_value")
-    private String email;
+    private String otp_value;
 
 }

@@ -31,13 +31,11 @@ public class SubmitContact {
     @Column(name = "status")
     private Boolean status;
 
-    @Temporal(TemporalType.DATE)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd@HH:mm:ss.SSSZ")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "create_at")
     private Date create_at;
 
-    @Temporal(TemporalType.DATE)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd@HH:mm:ss.SSSZ")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "update_at")
     private Date update_at;
 
