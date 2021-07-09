@@ -1,18 +1,21 @@
 package com.demo.laptopshop;
 
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class LaptopshopApplication implements CommandLineRunner {
+public class LaptopshopApplication extends SpringBootServletInitializer {
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(LaptopshopApplication.class);
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(LaptopshopApplication.class, args);
     }
 
-    @Override
-    public void run(String... args) throws Exception {
 
-    }
 }
