@@ -15,7 +15,7 @@ import java.util.Map;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/slides")
+@RequestMapping("/api/v1/slides")
 public class SlidesController {
     @Autowired
     SlidesRepo slidesRepo;

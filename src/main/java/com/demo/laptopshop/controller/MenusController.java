@@ -14,7 +14,7 @@ import java.util.Map;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/menus")
+@RequestMapping("/api/v1/menus")
 public class MenusController {
     @Autowired
     MenusRepo menusRepo;

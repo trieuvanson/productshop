@@ -14,7 +14,7 @@ import java.util.Map;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/order-detail")
+@RequestMapping("/api/v1/order-detail")
 public class OrderDetailController {
     @Autowired
     OrderDetailRepo orderDetailRepo;

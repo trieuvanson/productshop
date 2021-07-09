@@ -14,7 +14,7 @@ import java.util.Map;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/coupon")
+@RequestMapping("/api/v1/coupon")
 public class CouponController {
     @Autowired
     CouponRepo couponRepo;

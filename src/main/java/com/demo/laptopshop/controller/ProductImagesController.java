@@ -14,7 +14,7 @@ import java.util.Map;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/product-images")
+@RequestMapping("/api/v1/product-images")
 public class ProductImagesController {
     @Autowired
     ProductImagesRepo productImagesRepo;

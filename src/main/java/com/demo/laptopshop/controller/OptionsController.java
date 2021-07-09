@@ -15,7 +15,7 @@ import java.util.Map;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/options")
+@RequestMapping("/api/v1/options")
 public class OptionsController {
     @Autowired
     OptionsRepo optionsRepo;

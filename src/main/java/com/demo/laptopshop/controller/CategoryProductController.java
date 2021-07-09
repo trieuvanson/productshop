@@ -14,7 +14,7 @@ import java.util.Map;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/category-product")
+@RequestMapping("/api/v1/category-product")
 public class CategoryProductController {
     @Autowired
     CategoryProductRepo categoryProductRepo;

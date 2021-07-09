@@ -14,7 +14,7 @@ import java.util.Map;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/orderview")
+@RequestMapping("/api/v1/orderview")
 public class OrdersOverViewController {
     @Autowired
     OrdersOverViewRepo ordersOverViewRepo;

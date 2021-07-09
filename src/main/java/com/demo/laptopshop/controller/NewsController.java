@@ -14,7 +14,7 @@ import java.util.Map;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/news")
+@RequestMapping("/api/v1/news")
 public class NewsController {
     @Autowired
     NewsRepo newsRepo;

@@ -14,7 +14,7 @@ import java.util.Map;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/submit-contact")
+@RequestMapping("/api/v1/submit-contact")
 public class SubmitContactController {
     @Autowired
     SubmitContactRepo submitContactRepo;

@@ -14,7 +14,7 @@ import java.util.Map;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/note")
+@RequestMapping("/api/v1/note")
 public class NoteController {
     @Autowired
     NoteRepo noteRepo;
