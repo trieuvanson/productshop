@@ -55,4 +55,9 @@ public class ProductImagesController {
         reponse.put("deleted", Boolean.TRUE);
         return ResponseEntity.ok(reponse);
     }
+
+    @GetMapping("/get-images/{id}")
+    private List<String> getProductImagesName(@PathVariable Long id)  {
+        return productImagesRepo.getProductImagesName(id);
+    }
 }
