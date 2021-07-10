@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +34,8 @@ public class UsersController {
 
     @PostMapping("/")
     public Users PostUsers(@RequestBody Users User) {
+        User.setCreate_at(new Date());
+        User.setUpdate_at(new Date());
         return usersRepo.save(User);
     }
 
@@ -45,7 +48,7 @@ public class UsersController {
         newUser.setPhone(Users.getPhone());
         newUser.setFullname(Users.getFullname());
         newUser.setForgot_code(Users.getForgot_code());
-        newUser.setUpdate_at(Users.getUpdate_at());
+        newUser.setUpdate_at(new Date());
         Users updateUser = usersRepo.save(newUser);
         return ResponseEntity.ok(updateUser);
     }

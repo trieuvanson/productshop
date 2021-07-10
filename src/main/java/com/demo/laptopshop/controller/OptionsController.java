@@ -4,7 +4,6 @@ package com.demo.laptopshop.controller;
 import com.demo.laptopshop.exception.ResourceNotFoundException;
 import com.demo.laptopshop.model.Options;
 import com.demo.laptopshop.repo.OptionsRepo;
-import com.demo.laptopshop.repo.SlidesRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

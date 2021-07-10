@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +34,8 @@ public class OrdersOverViewController {
 
     @PostMapping("/")
     public OrdersOverView PostOrdersOverView(@RequestBody OrdersOverView OrdersOverView) {
+        OrdersOverView.setCreate_at(new Date());
+        OrdersOverView.setUpdate_at(new Date());
         return ordersOverViewRepo.save(OrdersOverView);
     }
 
@@ -45,7 +48,7 @@ public class OrdersOverViewController {
         newOrdersOverView.setDiscount(OrdersOverView.getDiscount());
         newOrdersOverView.setStatus(OrdersOverView.getStatus());
         newOrdersOverView.setSub_total(OrdersOverView.getSub_total());
-        newOrdersOverView.setUpdate_at(OrdersOverView.getUpdate_at());
+        newOrdersOverView.setUpdate_at(new Date());
         OrdersOverView updateOrdersOverView = ordersOverViewRepo.save(newOrdersOverView);
         return ResponseEntity.ok(updateOrdersOverView);
     }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +34,8 @@ public class CouponController {
 
     @PostMapping("/")
     public Coupon PostCoupon(@RequestBody Coupon Coupon) {
+        Coupon.setCreate_at(new Date());
+        Coupon.setUpdate_at(new Date());
         return couponRepo.save(Coupon);
     }
 
@@ -45,7 +48,7 @@ public class CouponController {
         newCoupon.setType(Coupon.getType());
         newCoupon.setValue(Coupon.getValue());
         newCoupon.setDate_end(Coupon.getDate_end());
-        newCoupon.setUpdate_at(Coupon.getUpdate_at());
+        newCoupon.setUpdate_at(new Date());
         Coupon updateCoupon = couponRepo.save(newCoupon);
         return ResponseEntity.ok(updateCoupon);
     }

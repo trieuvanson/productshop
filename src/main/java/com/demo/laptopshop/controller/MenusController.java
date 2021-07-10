@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +34,8 @@ public class MenusController {
 
     @PostMapping("/")
     public Menus PostMenus(@RequestBody Menus Menu) {
+        Menu.setCreate_at(new Date());
+        Menu.setUpdate_at(new Date());
         return menusRepo.save(Menu);
     }
 
@@ -44,7 +47,7 @@ public class MenusController {
         newMenu.setLink(Menu.getLink());
         newMenu.setParent_id(Menu.getParent_id());
         newMenu.setPostion(Menu.getPostion());
-        newMenu.setUpdate_at(Menu.getUpdate_at());
+        newMenu.setUpdate_at(new Date());
         Menus updateMenus = menusRepo.save(newMenu);
         return ResponseEntity.ok(updateMenus);
     }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +34,8 @@ public class CategoryProductController {
 
     @PostMapping("/")
     public CategoryProduct PostCategoryProduct(@RequestBody CategoryProduct CategoryProduct) {
+        CategoryProduct.setCreate_at(new Date());
+        CategoryProduct.setUpdate_at(new Date());
         return categoryProductRepo.save(CategoryProduct);
     }
 
@@ -44,7 +47,7 @@ public class CategoryProductController {
         newCategoryProduct.setCate_banner(CategoryProduct.getCate_banner());
         newCategoryProduct.setCate_slug(CategoryProduct.getCate_slug());
         newCategoryProduct.setParent_id(CategoryProduct.getParent_id());
-        newCategoryProduct.setUpdate_at(CategoryProduct.getUpdate_at());
+        newCategoryProduct.setUpdate_at(new Date());
         CategoryProduct updateCategoryProduct = categoryProductRepo.save(newCategoryProduct);
         return ResponseEntity.ok(updateCategoryProduct);
     }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +34,8 @@ public class NoteController {
 
     @PostMapping("/")
     public Note PostNote(@RequestBody Note Note) {
+        Note.setCreate_at(new Date());
+        Note.setUpdate_at(new Date());
         return noteRepo.save(Note);
     }
 
@@ -43,7 +46,7 @@ public class NoteController {
         newNote.setTitle(Note.getTitle());
         newNote.setContent(Note.getContent());
         newNote.setUser_id(Note.getUser_id());
-        newNote.setUpdate_at(Note.getUpdate_at());
+        newNote.setUpdate_at(new Date());
         Note updateNote = noteRepo.save(newNote);
         return ResponseEntity.ok(updateNote);
     }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +34,8 @@ public class OrderDetailController {
 
     @PostMapping("/")
     public OrderDetail PostOrderDetail(@RequestBody OrderDetail OrderDetail) {
+        OrderDetail.setCreate_at(new Date());
+        OrderDetail.setUpdate_at(new Date());
         return orderDetailRepo.save(OrderDetail);
     }
 
@@ -44,7 +47,7 @@ public class OrderDetailController {
         newOrderDetail.setTotal(OrderDetail.getTotal());
         newOrderDetail.setProduct_id(OrderDetail.getProduct_id());
         newOrderDetail.setQuantity(OrderDetail.getQuantity());
-        newOrderDetail.setUpdate_at(OrderDetail.getUpdate_at());
+        newOrderDetail.setUpdate_at(new Date());
         OrderDetail updateOrderDetail = orderDetailRepo.save(newOrderDetail);
         return ResponseEntity.ok(updateOrderDetail);
     }

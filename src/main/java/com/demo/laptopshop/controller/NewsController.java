@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +34,8 @@ public class NewsController {
 
     @PostMapping("/")
     public News PostNews(@RequestBody News News) {
+        News.setCreate_at(new Date());
+        News.setUpdate_at(new Date());
         return newsRepo.save(News);
     }
 
@@ -43,7 +46,7 @@ public class NewsController {
         newNews.setTitle(News.getTitle());
         newNews.setContent(News.getContent());
         newNews.setCate_id(News.getCate_id());
-        newNews.setUpdate_at(News.getUpdate_at());
+        newNews.setUpdate_at(new Date());
         News updateNews = newsRepo.save(newNews);
         return ResponseEntity.ok(updateNews);
     }

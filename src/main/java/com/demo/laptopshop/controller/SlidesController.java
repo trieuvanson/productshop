@@ -3,12 +3,12 @@ package com.demo.laptopshop.controller;
 
 import com.demo.laptopshop.exception.ResourceNotFoundException;
 import com.demo.laptopshop.model.Slides;
-import com.demo.laptopshop.model.Slides;
 import com.demo.laptopshop.repo.SlidesRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +34,8 @@ public class SlidesController {
 
     @PostMapping("/")
     public Slides PostSlide(@RequestBody Slides Slide) {
+        Slide.setCreate_at(new Date());
+        Slide.setUpdate_at(new Date());
         return slidesRepo.save(Slide);
     }
 
@@ -44,7 +46,7 @@ public class SlidesController {
         newSlide.setLink(Slide.getLink());
         newSlide.setImage(Slide.getImage());
         newSlide.setPostion(Slide.getPostion());
-        newSlide.setUpdate_at(Slide.getUpdate_at());
+        newSlide.setUpdate_at(new Date());
         Slides updateSlide = slidesRepo.save(newSlide);
         return ResponseEntity.ok(updateSlide);
     }

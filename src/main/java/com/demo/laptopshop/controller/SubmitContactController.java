@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +34,8 @@ public class SubmitContactController {
 
     @PostMapping("/")
     public SubmitContact PostSubmitContact(@RequestBody SubmitContact SubmitContact) {
+        SubmitContact.setCreate_at(new Date());
+        SubmitContact.setUpdate_at(new Date());
         return submitContactRepo.save(SubmitContact);
     }
 
@@ -44,7 +47,7 @@ public class SubmitContactController {
         newSubmitContact.setEmail(SubmitContact.getEmail());
         newSubmitContact.setContent(SubmitContact.getContent());
         newSubmitContact.setStatus(SubmitContact.getStatus());
-        newSubmitContact.setUpdate_at(SubmitContact.getUpdate_at());
+        newSubmitContact.setUpdate_at(new Date());
         SubmitContact updateSubmitContact = submitContactRepo.save(newSubmitContact);
         return ResponseEntity.ok(updateSubmitContact);
     }

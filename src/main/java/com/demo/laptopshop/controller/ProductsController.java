@@ -1,7 +1,6 @@
 package com.demo.laptopshop.controller;
 
 
-
 import com.demo.laptopshop.exception.ResourceNotFoundException;
 import com.demo.laptopshop.model.Products;
 import com.demo.laptopshop.repo.ProductsRepo;
@@ -9,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +34,8 @@ public class ProductsController {
 
     @PostMapping("/{id}")
     public Products PostProduct(@RequestBody Products product) {
+        product.setCreate_at(new Date());
+        product.setUpdate_at(new Date());
         return productsRepo.save(product);
     }
 
@@ -48,10 +50,10 @@ public class ProductsController {
         newProduct.setRegular_price(product.getRegular_price());
         newProduct.setShort_desc(product.getShort_desc());
         newProduct.setFeatured(product.getFeatured());
-        newProduct.setUpdate_at(product.getUpdate_at());
         newProduct.setThumbnail(product.getThumbnail());
         newProduct.setSlug(product.getSlug());
         newProduct.setSale_price(product.getSale_price());
+        newProduct.setUpdate_at(new Date());
         Products updateProduct = productsRepo.save(newProduct);
         return ResponseEntity.ok(updateProduct);
     }

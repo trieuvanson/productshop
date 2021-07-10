@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +34,8 @@ public class CategoriesController {
 
     @PostMapping("/")
     public Categories PostCategory(@RequestBody Categories Category) {
+        Category.setCreate_at(new Date());
+        Category.setUpdate_at(new Date());
         return categoriesRepo.save(Category);
     }
 
@@ -44,7 +47,7 @@ public class CategoriesController {
         newCategory.setName(Category.getName());
         newCategory.setParent_id(Category.getParent_id());
         newCategory.setSlug(newCategory.getSlug());
-        newCategory.setUpdate_at(Category.getUpdate_at());
+        newCategory.setUpdate_at(new Date());
         Categories updateCategory = categoriesRepo.save(newCategory);
         return ResponseEntity.ok(updateCategory);
     }
