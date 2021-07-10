@@ -29,7 +29,7 @@ public class Users {
     private String phone;
 
     @Column(name = "fullname")
-    private Double fullname;
+    private String fullname;
 
     @Column(name = "forgot_code")
     private Double forgot_code;
